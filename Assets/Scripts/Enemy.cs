@@ -3,8 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private int _health = 1;
+
     private Animator _animator;
-    private float _health = 1;
 
     private void Start()
     {

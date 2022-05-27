@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] private float _atackDuration = 0.5f;
     [SerializeField] private SwordAttack _swordAttack;
 
     private PlayerInputActions _input;
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             _swordAttack.AttackRight();
         }
-        EndSwordAttack();
+        Invoke(nameof(EndSwordAttack), _atackDuration);
     }
 
     public void EndSwordAttack()
