@@ -75752,6 +75752,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1561655364}
   _movingSpeed: 5
+  _minCameraPosition: {x: 8.5, y: -2}
+  _maxCameraPosition: {x: 35, y: 15}
 --- !u!1001 &6075398915685850221
 PrefabInstance:
   m_ObjectHideFlags: 0
