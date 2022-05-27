@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animation))]
+[RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
     private Animator _animator;
@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
+        Debug.Log("Damage Taked");
 
         if (_health <= 0)
         {
@@ -23,11 +24,7 @@ public class Enemy : MonoBehaviour
 
     private void Defeated()
     {
-        _animator.SetTrigger("Defeated");
-    }
-
-    private void RemoveEnemy()
-    {
+        _animator.SetTrigger("Death");
         Destroy(gameObject);
     }
 }
