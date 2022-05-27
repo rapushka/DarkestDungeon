@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
-    [SerializeField] private float _collisionOffset = 0.05f;
     [SerializeField] private SwordAttack _swordAttack;
 
     private PlayerInputActions _input;
@@ -93,6 +92,7 @@ public class PlayerController : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext obj)
     {
         _animator.SetTrigger("SwordAttack");
+        SwordAttack();
     }
 
     public void SwordAttack()
@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             _swordAttack.AttackRight();
         }
+        EndSwordAttack();
     }
 
     public void EndSwordAttack()
