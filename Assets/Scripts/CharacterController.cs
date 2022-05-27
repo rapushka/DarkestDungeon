@@ -23,26 +23,15 @@ public class CharacterController : MonoBehaviour
         position += _speed * Time.deltaTime * direction;
         transform.position = position;
 
-        SetSpriteByDirection(direction);
+        _spriteRenderer.sprite = GetSpriteByDirection(direction);
     }
 
-    private void SetSpriteByDirection(Vector2 direction)
+    private Sprite GetSpriteByDirection(Vector2 direction)
     {
-        if (direction.x < 0)
-        {
-            _spriteRenderer.sprite = _sprite[0];
-        }
-        else if (direction.x > 0)
-        {
-            _spriteRenderer.sprite = _sprite[3];
-        }
-        else if (direction.y > 0)
-        {
-            _spriteRenderer.sprite = _sprite[2];
-        }
-        else if (direction.y < 0)
-        {
-            _spriteRenderer.sprite = _sprite[1];
-        }
+        return direction == Vector2.left ? _sprite[0]
+            : direction == Vector2.right ? _sprite[3]
+            : direction == Vector2.up ? _sprite[2] 
+            : direction == Vector2.down ? _sprite[1] 
+            : throw new System.Exception();
     }
 }

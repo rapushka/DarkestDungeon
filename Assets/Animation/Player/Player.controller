@@ -29,7 +29,7 @@ AnimatorStateMachine:
   m_AnyStatePosition: {x: -150, y: 140, z: 0}
   m_EntryPosition: {x: 40, y: 140, z: 0}
   m_ExitPosition: {x: 230, y: 140, z: 0}
-  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_ParentStateMachinePosition: {x: -110, y: 30, z: 0}
   m_DefaultState: {fileID: -1804053484552506178}
 --- !u!1101 &-4393841325507745535
 AnimatorStateTransition:
@@ -91,7 +91,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: SwordAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5482776040988897640}
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: SwordAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5482776040988897640}
@@ -202,13 +202,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: swordAttack
+    m_Controller: {fileID: 0}
+  - m_Name: SwordAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

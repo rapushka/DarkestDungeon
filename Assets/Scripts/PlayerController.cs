@@ -1,7 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _input = new PlayerInputActions();
+
         _input.Player.Attack
             .performed += OnAttack;
     }
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
         _direction = _input.Player.Move.ReadValue<Vector2>();
 
-        PlayMovingAnimation();
+        Move();
 
         if (_direction.x < 0)
         {
@@ -60,7 +63,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayMovingAnimation()
+    private void Move()
     {
         if (_direction == Vector2.zero)
         {
@@ -68,62 +71,32 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        bool isMoving = TryMove(_direction);
-        _animator.SetBool("isMoving", isMoving);
-    }
+        Vector2 scaledDirection = _moveSpeed * _direction;
+        _rigidbody.MovePosition(_rigidbody.position 
+            + scaledDirection * Time.fixedDeltaTime);
 
-    private bool TryMove(Vector2 direction)
-    {
-        if (direction == Vector2.zero)
-        {
-            return false;
-        }
-
-        _rigidbody.MovePosition
-        (
-            _rigidbody.position
-            + _moveSpeed
-            * Time.fixedDeltaTime
-            * direction
-        );
-
-        return true;
+        _animator.SetBool("isMoving", true);
     }
 
     private void OnAttack(InputAction.CallbackContext obj)
     {
+        _isCanMove = false;
         _animator.SetTrigger("SwordAttack");
-        SwordAttack();
-    }
-
-    public void SwordAttack()
-    {
-        LockMovement();
 
         if (_spriteRenderer.flipX)
         {
-            _swordAttack.AttackLeft();
+            _swordAttack.StartAttackLeft();
         }
         else
         {
-            _swordAttack.AttackRight();
+            _swordAttack.StartAttackRight();
         }
         Invoke(nameof(EndSwordAttack), _atackDuration);
     }
 
-    public void EndSwordAttack()
+    private void EndSwordAttack()
     {
-        UnlockMovement();
         _swordAttack.StopAttack();
-    }
-
-    public void LockMovement()
-    {
-        _isCanMove = false;
-    }
-
-    public void UnlockMovement()
-    {
         _isCanMove = true;
     }
 }

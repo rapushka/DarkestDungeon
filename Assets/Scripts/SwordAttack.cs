@@ -16,13 +16,13 @@ public class SwordAttack : MonoBehaviour
         _leftAttackOffset.x *= -1;
     }
 
-    public void AttackRight()
+    public void StartAttackRight()
     {
         transform.localPosition = _rightAttackOffset;
         _swordCollider.enabled = true;
     }
 
-    public void AttackLeft()
+    public void StartAttackLeft()
     {
         transform.localPosition = _leftAttackOffset;
         _swordCollider.enabled = true;
@@ -35,10 +35,8 @@ public class SwordAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"OnTriggerEnter2D {other.name}");
         if (other.TryGetComponent(out Enemy enemy))
         {
-            Debug.Log(">> TryGetComponent Enemy");
             enemy.TakeDamage(_damage);
         }
     }
