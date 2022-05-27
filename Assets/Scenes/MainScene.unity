@@ -75255,6 +75255,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!4 &1561655357 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5181806672549612915, guid: 9ccfbe325e8d6fb429e941f56e3f3673, type: 3}
+  m_PrefabInstance: {fileID: 6075398915685850221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1636431047
 GameObject:
   m_ObjectHideFlags: 0
@@ -75429,7 +75434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fc4252e7ac6784e9e4608589d31307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 0}
+  _playerTransform: {fileID: 1561655357}
   _movingSpeed: 5
   _minCameraPosition: {x: 8.5, y: -2}
   _maxCameraPosition: {x: 35, y: 15}
