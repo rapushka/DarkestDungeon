@@ -1,41 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Sprite[] _sprite;
 
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
-    void Start()
+    private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        //QualitySettings.vSyncCount = 0;
-        //Application.targetFrameRate = 10;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-
-    void Update()
+    private void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        Vector2 direction = Vector2.zero;
+        direction.x = Input.GetAxis("Horizontal");
+        direction.y = Input.GetAxis("Vertical");
 
         Vector2 position = transform.position;
-
-        position.x = position.x + _speed * horizontal * Time.deltaTime;
-        position.y = position.y + _speed * vertical * Time.deltaTime;
-
-        if (horizontal < 0)
-            spriteRenderer.sprite = _sprite[0];
-        else if (horizontal > 0)
-            spriteRenderer.sprite = _sprite[3];
-        else if (vertical > 0)
-            spriteRenderer.sprite = _sprite[2];
-        else if (vertical < 0)
-            spriteRenderer.sprite = _sprite[1];
-
+        position += _speed * Time.deltaTime * direction;
         transform.position = position;
+
+        SetSpriteByDirection(direction);
+    }
+
+    private void SetSpriteByDirection(Vector2 direction)
+    {
+        if (direction.x < 0)
+        {
+            _spriteRenderer.sprite = _sprite[0];
+        }
+        else if (direction.x > 0)
+        {
+            _spriteRenderer.sprite = _sprite[3];
+        }
+        else if (direction.y > 0)
+        {
+            _spriteRenderer.sprite = _sprite[2];
+        }
+        else if (direction.y < 0)
+        {
+            _spriteRenderer.sprite = _sprite[1];
+        }
     }
 }
