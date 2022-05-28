@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         _input.Disable();
+        _animator.SetBool("isMoving", false);
     }
 
     private void Start()
