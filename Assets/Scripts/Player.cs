@@ -6,16 +6,18 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _healt = 100;
+    [SerializeField] private HealthBar _healthBar;
+
+    private int _health = 100;
     private PlayerController _playerController;
     private Animator _animator;
-    private Collider2D _collider;
 
     private void Start()
     {
         _playerController = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
-        _collider = GetComponent<Collider2D>();
+
+        _healthBar.MaxHealth = _health;
     }
 
     public void LockMovement()
@@ -41,8 +43,9 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        _healt -= damage;
-        if (_healt <= 0)
+        _health -= damage;
+        _healthBar.Health = _health;
+        if (_health <= 0)
         {
             Defeated();
             return;
