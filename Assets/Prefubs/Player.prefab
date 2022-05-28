@@ -46,8 +46,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2776726}
-  m_Size: {x: 1.762747, y: 0.7408553}
+  m_Offset: {x: -0.30785102, y: -0.2776726}
+  m_Size: {x: 0.7408554, y: 0.7408554}
   m_Direction: 1
 --- !u!114 &1935598498
 MonoBehaviour:
@@ -61,8 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255afa726a3dadd469224c97e031c554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swordCollider: {fileID: 6006793053080548975}
   _damage: 3
+  _xOffset: 0.75
 --- !u!1 &4528322843972567377
 GameObject:
   m_ObjectHideFlags: 0

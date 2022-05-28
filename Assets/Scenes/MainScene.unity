@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 88767807}
   - component: {fileID: 88767806}
   m_Layer: 0
-  m_Name: City enter Trigger (1)
+  m_Name: Dungeon Exit Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22695613, y: 0.58530784}
+  m_Offset: {x: 0.026678562, y: -0.015524864}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -268,7 +268,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.54608774, y: 3.7951446}
+  m_Size: {x: 1.6634283, y: 0.35879326}
   m_EdgeRadius: 0
 --- !u!4 &88767808
 Transform:
@@ -278,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88767805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.62, y: 3.52, z: -0.6456856}
+  m_LocalPosition: {x: 14.57, y: -27.59, z: -0.6456856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -771,6 +771,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5948182940403380171, guid: 9db79fba022f8e34e945f47ee28a0c6d, type: 3}
+      propertyPath: _health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8385092042952544080, guid: 9db79fba022f8e34e945f47ee28a0c6d, type: 3}
       propertyPath: m_RootOrder
       value: 7
