@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Collider2D))]
@@ -7,10 +8,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private TextMeshProUGUI _coinsHolder;
 
     private int _health = 100;
+    private int _coinsAmount;
     private PlayerController _playerController;
     private Animator _animator;
+    private SwordAttack _swordAttack;
+
+    private void Awake()
+    {
+        _swordAttack = GetComponentInChildren<SwordAttack>();
+    }
 
     private void Start()
     {
@@ -18,6 +27,16 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _healthBar.MaxHealth = _health;
+    }
+
+    private void OnEnable()
+    {
+        _swordAttack.EnemyKilled += OnEnemyKilled;
+    }
+
+    private void OnDisable()
+    {
+        _swordAttack.EnemyKilled -= OnEnemyKilled;
     }
 
     public void LockMovement()
@@ -28,6 +47,12 @@ public class Player : MonoBehaviour
     public void UnLockMovement()
     {
         _playerController.enabled = true;
+    }
+
+    private void OnEnemyKilled(int reward)
+    {
+        _coinsAmount += reward;
+        _coinsHolder.text = _coinsAmount.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

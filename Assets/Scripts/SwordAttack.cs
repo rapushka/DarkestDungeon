@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -19,6 +20,8 @@ public class SwordAttack : MonoBehaviour
         _leftSideOfsetted = Offset(_xOffset * -1);
         _rightSideOfsetted = Offset(_xOffset);
     }
+
+    public event Action<int> EnemyKilled;
     
     public void StartAttackRight()
     {
@@ -42,7 +45,11 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
         {
-            enemy.TakeDamage(_damage);
+            int reward = enemy.TakeDamage(_damage);
+            if (reward > 0)
+            {
+                EnemyKilled?.Invoke(reward);
+            }
         }
     }
 

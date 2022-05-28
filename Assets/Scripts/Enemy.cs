@@ -10,11 +10,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _atackduration = 0.1f;
     [Space]
     [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private int _reward = 1;
 
     private Animator _animator;
     private CircleCollider2D _colider;
 
-    private void Start()
+    private void Start()    
     {
         _animator = GetComponent<Animator>();
         _colider = GetComponent<CircleCollider2D>();
@@ -35,7 +36,7 @@ public class Enemy : MonoBehaviour
         _colider.radius /= _atackRadius;
     }
 
-    public void TakeDamage(int damage)
+    public int TakeDamage(int damage)
     {
         _health -= damage;
         _healthBar.Health = _health;
@@ -43,7 +44,9 @@ public class Enemy : MonoBehaviour
         if (_health <= 0)
         {
             Defeated();
+            return _reward;
         }
+        return 0;
     }
 
     private void Defeated()
