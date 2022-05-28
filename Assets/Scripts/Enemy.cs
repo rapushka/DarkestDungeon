@@ -1,18 +1,34 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health = 1;
+    [SerializeField] private int _damage = 10;
+    [SerializeField] private int _atackRadius = 3;
+    [SerializeField] private float _atackduration = 0.1f;
 
     private Animator _animator;
-    private Collider2D _colider;
+    private CircleCollider2D _colider;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _colider = GetComponent<Collider2D>();
+        _colider = GetComponent<CircleCollider2D>();
+    }
+
+    public int Damage => _damage;
+
+    public void Attack()
+    {
+        _colider.radius *= _atackRadius;
+        Invoke(nameof(BackNormalRadius), _atackduration);
+    }
+
+    private void BackNormalRadius()
+    {
+        _colider.radius /= _atackRadius;
     }
 
     public void TakeDamage(int damage)
