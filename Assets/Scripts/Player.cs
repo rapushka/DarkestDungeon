@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Collider2D))]
@@ -99,6 +100,12 @@ public class Player : MonoBehaviour
     {
         LockMovement();
         _animator.SetTrigger("Death");
-        Debug.Log("Game Over");
+
+        Invoke(nameof(GoToMainMenu), 1f);
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
