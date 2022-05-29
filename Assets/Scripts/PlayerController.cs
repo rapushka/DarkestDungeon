@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -26,6 +27,13 @@ public class PlayerController : MonoBehaviour
 
         _input.Player.Attack
             .performed += OnAttack;
+
+        _input.UI.Pause.performed += OnPause;
+    }
+
+    private void OnPause(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void OnEnable()

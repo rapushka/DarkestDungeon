@@ -52,7 +52,7 @@ public class Seller : MonoBehaviour
 
             _dialogMessage.text = _player.Coins < _price
                 ? $"Ничего не могу предложить, вот когда принесёшь {_price} монет - тогда и поговорим"
-                : $"Если ты дашь мне {_price} монет - я улучшу твой меч!";
+                : $"Если ты дашь мне {_price} монет - я улучшу твой меч! (E)";
         }
     }
 
