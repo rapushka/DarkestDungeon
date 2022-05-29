@@ -22,7 +22,12 @@ public class SwordAttack : MonoBehaviour
     }
 
     public event Action<int> EnemyKilled;
-    
+
+    public void MultiplyDamage(float multiplyer)
+    {
+        _damage = Mathf.RoundToInt(_damage * multiplyer);
+    }
+
     public void StartAttackRight()
     {
         _swordCollider.enabled = true;

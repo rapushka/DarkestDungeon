@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _direction;
 
+    public PlayerInputActions Actions => _input;
+
     private void Awake()
     {
         _input = new PlayerInputActions();

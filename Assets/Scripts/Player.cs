@@ -16,14 +16,17 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private SwordAttack _swordAttack;
 
+    public PlayerController PlayerController => _playerController;
+    public int Coins => _coinsAmount;
+
     private void Awake()
     {
         _swordAttack = GetComponentInChildren<SwordAttack>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void Start()
     {
-        _playerController = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
 
         _healthBar.MaxHealth = _health;
@@ -47,6 +50,20 @@ public class Player : MonoBehaviour
     public void UnLockMovement()
     {
         _playerController.enabled = true;
+    }
+
+    public bool TryUpgrade(float damageMultiplier, int price)
+    {
+        if (_coinsAmount < price)
+        {
+            return false;
+        }
+
+        _coinsAmount -= price;
+        _swordAttack.MultiplyDamage(damageMultiplier);
+
+        _coinsHolder.text = _coinsAmount.ToString();
+        return true;
     }
 
     private void OnEnemyKilled(int reward)
