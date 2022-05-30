@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private TextMeshProUGUI _coinsHolder;
+    [Space]
+    [SerializeField] private AudioSource _hurtPlayer;
+    [SerializeField] private AudioSource _coinPickup;
 
     private int _health = 100;
     private int _coinsAmount;
@@ -69,6 +72,7 @@ public class Player : MonoBehaviour
 
     private void OnEnemyKilled(int reward)
     {
+        _coinPickup.Play();
         _coinsAmount += reward;
         _coinsHolder.text = _coinsAmount.ToString();
     }
@@ -88,6 +92,8 @@ public class Player : MonoBehaviour
     {
         _health -= damage;
         _healthBar.Health = _health;
+        _hurtPlayer.Play();
+
         if (_health <= 0)
         {
             Defeated();

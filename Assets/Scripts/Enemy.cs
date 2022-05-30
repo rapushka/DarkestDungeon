@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     [Space]
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _reward = 1;
+    [Space]
+    [SerializeField] private AudioSource _enemyHurtSound;
 
     private Animator _animator;
     private CircleCollider2D _colider;
@@ -40,6 +42,7 @@ public class Enemy : MonoBehaviour
     {
         _health -= damage;
         _healthBar.Health = _health;
+        _enemyHurtSound.Play();
 
         if (_health <= 0)
         {

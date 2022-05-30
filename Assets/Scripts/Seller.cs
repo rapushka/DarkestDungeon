@@ -8,6 +8,8 @@ public class Seller : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private int _price;
     [SerializeField] private float _multiplier;
+    [Space]
+    [SerializeField] private AudioSource _powerUpSound;
 
     private TextMeshProUGUI _dialogMessage;
     private bool _isNear;
@@ -39,6 +41,7 @@ public class Seller : MonoBehaviour
             return;
         }
 
+        _powerUpSound.Play();
         _price *= 2;
         _dialogMessage.text = "Поздравляю с покупкой!";
     }

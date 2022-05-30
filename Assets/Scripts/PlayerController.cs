@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,12 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _atackDuration = 0.5f;
     [SerializeField] private SwordAttack _swordAttack;
+    [Space]
+    [SerializeField] private AudioSource _walkingSound;
 
     private PlayerInputActions _input;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private bool _isCanMove = true;
+    private float _defaultPitch;
 
     private Vector2 _direction;
 
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
             .performed += OnAttack;
 
         _input.UI.Pause.performed += OnPause;
+        _defaultPitch = _walkingSound.pitch;
     }
 
     private void OnPause(InputAction.CallbackContext obj)
@@ -79,15 +85,26 @@ public class PlayerController : MonoBehaviour
         if (_direction == Vector2.zero)
         {
             _animator.SetBool("isMoving", false);
+            if (_walkingSound.isPlaying)
+            {
+                _walkingSound.Stop();
+            }
             return;
         }
-
+        if (_walkingSound.isPlaying == false)
+        {
+            _walkingSound.Play();
+        }
+        _walkingSound.pitch = _defaultPitch;
+        _walkingSound.pitch += UnityEngine.Random.value - 0.5f;
+    
         Vector2 scaledDirection = _moveSpeed * _direction;
         _rigidbody.MovePosition(_rigidbody.position 
             + scaledDirection * Time.fixedDeltaTime);
 
         _animator.SetBool("isMoving", true);
     }
+
 
     private void OnAttack(InputAction.CallbackContext obj)
     {
