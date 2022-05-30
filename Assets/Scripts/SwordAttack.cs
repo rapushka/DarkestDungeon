@@ -6,6 +6,8 @@ public class SwordAttack : MonoBehaviour
 {
     [SerializeField] private int _damage = 3;
     [SerializeField] private float _xOffset = 1f;
+    [Space]
+    [SerializeField] private AudioSource _waveSound;
 
     private Collider2D _swordCollider;
     private Vector3 _initialPosition;
@@ -30,14 +32,19 @@ public class SwordAttack : MonoBehaviour
 
     public void StartAttackRight()
     {
-        _swordCollider.enabled = true;
-        transform.localPosition = _rightSideOfsetted;
+        Attack(_rightSideOfsetted);
     }
 
     public void StartAttackLeft()
     {
+        Attack(_leftSideOfsetted);
+    }
+
+    private void Attack(Vector3 vector)
+    {
+        _waveSound.Play();
         _swordCollider.enabled = true;
-        transform.localPosition = _leftSideOfsetted;
+        transform.localPosition = vector;
     }
 
     public void StopAttack()
